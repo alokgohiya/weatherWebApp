@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Weather</title>
+	<style type="text/css">
+		body{
+			background-color: skyblue;
+
+		}
+		h1{
+			font-family:cursive;
+			color:black;
+			text-align: center;
+		}
+		#entry{
+			font-family: cursive;
+			position: relative;
+			left:610px;
+			border-radius: 5px;
+			width: 300px;
+			height:55px;
+			font-size: 32px;
+			text-align: center;
+		}
+		#check{
+			font-family: cursive;
+			position: relative;
+			left: 611px;
+			width: 306px;
+			border-radius: 5px;
+		    height: 30px;
+		}
+		#p{
+			text-align: center;
+			font-family: cursive;
+			font-size: 30px;
+		}
+	</style>
+</head>
+<body>
+	<h1>Weather</h1>
+	<input type="text" id="entry" placeholder="Enter City"><br><br>
+	<button id="check" onclick="check()">Check Weather</button>
+<p id="p"></p>
+<script type="text/javascript">
+	function check(){
+		var loc=document.getElementById('entry').value;
+		
+
+	fetch("http://api.openweathermap.org/data/2.5/weather?q="+loc+"&appid=66d92f37baa68c2ece44309195ab31c4&units=metric", {
+	"method": "GET"
+})
+.then(response => {
+	return response.json();
+})
+.then(data =>{
+	const {name} =data;
+	const {feels_like}=data.main;
+	const {id,main}=data.weather[0];
+	document.getElementById('p').innerHTML=feels_like+name+main+id ;
+
+
+})
+.catch(err => {
+	console.error(err);
+});
+}
+</script>
+</body>
+</html>
+
+http://indianrailapi.com/api/v2/LiveStation/apikey/be6b4606d25bd2a93339841136bef383/StationCode/BPL/hours/12/ <indian railway>
+https://cricapi.com/api/playerFinder?apikey=mRgcv0GgTqdJ5xqESlzd7QFs0LD2&name=Tendulkar <cricapi>
+
+https://newsapi.org/v2/everything?q=apple&from=2021-03-20&to=2021-03-20&sortBy=popularity&apiKey=d3deb65d53b54c44a8939f5ee3c736ce <newsapi>
